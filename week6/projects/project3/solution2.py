@@ -14,16 +14,17 @@ average = sum(scores) / len(scores)
 
 # TODO: determine the grade with if/elif/else (A/B/C/D/F)
 
-if average >= 90:
-    grade = "A"
-elif average >= 80:
-    grade = "B"
-elif average >= 70:
-    grade = "C"
-elif average >= 60:
-    grade = "D"
-else:
-    grade = "F"
+match average:
+    case _ if _ >= 90:
+        grade = "A"
+    case _ if _ >= 80:
+        grade = "B"
+    case _ if _ >= 70:
+        grade = "C"
+    case _ if _ >= 60:
+        grade = "D"
+    case _:
+        grade = "F"
 
 # TODO: print the average (1 decimal place) and the grade
 #   Hint: f"{average:.1f}" formats to 1 decimal place
