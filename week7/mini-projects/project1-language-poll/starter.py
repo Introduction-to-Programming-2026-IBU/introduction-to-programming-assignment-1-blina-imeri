@@ -35,3 +35,4 @@ for rank, language in enumerate(sorted_languages, start=1):
 # TODO: Print the total number of responses
 # Hint: sum(counts.values())
 print(f"\nTotal responses: {sum(counts.values())}")
+
