@@ -1,0 +1,143 @@
+/* 
+  Exercise 3: Responsive Design
+  ==============================
+  MOBILE-FIRST: Write base styles for small screens,
+  then use min-width media queries to enhance for larger screens.
+
+  Breakpoints to use:
+    600px  → tablet
+    900px  → desktop
+    1200px → wide desktop
+*/
+
+/* ===== TODO: CSS Custom Properties ===== */
+:root {
+
+}
+
+/* ===== TODO: Base Styles (Mobile First) ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  /* Set font, background, color */
+}
+
+/* ===== TODO Task 2: Header & Nav (mobile: stacked) ===== */
+header {
+
+}
+
+.header-inner {
+  /* On mobile, stack logo and nav vertically */
+}
+
+.logo {
+  /* Style the site logo/brand name */
+}
+
+nav {
+  /* On mobile: links stacked in a column */
+}
+
+nav a {
+  /* Comfortable tap targets (min 44px height), no underline */
+}
+
+nav a:hover {
+
+}
+
+/* ===== TODO Task 5: Hero Section ===== */
+#hero {
+  /* Centered text, some padding */
+}
+
+#hero h1 {
+  /* TODO: Use clamp() for responsive font size */
+  /* font-size: clamp(1.5rem, 5vw, 3rem); */
+}
+
+/* ===== TODO Task 3: Flexbox Cards ===== */
+.flex-container {
+  /* display: flex, flex-wrap: wrap, gap */
+}
+
+.flex-card {
+  /* flex: 1 1 250px so they wrap naturally */
+}
+
+/* ===== TODO Task 4: CSS Grid Gallery ===== */
+.photo-grid {
+  /* display: grid, 1 column on mobile, gap */
+}
+
+.grid-item {
+  /* Position relative for caption overlay */
+}
+
+.grid-item img {
+  /* Make images fill their grid cell */
+}
+
+.caption {
+  /* Optional: overlay caption */
+}
+
+/* ===== TODO: Footer ===== */
+footer {
+
+}
+
+/* ===== TODO: Sections ===== */
+section {
+  /* padding, max-width, center with margin auto */
+}
+
+
+/* ============================================
+   TABLET (600px+)
+   ============================================ */
+@media (min-width: 600px) {
+
+  /* TODO Task 2: Nav becomes horizontal */
+  .header-inner {
+    /* Row layout */
+  }
+
+  nav {
+    /* Horizontal row */
+  }
+
+  /* TODO Task 4: Grid becomes 2 columns */
+  .photo-grid {
+    /* grid-template-columns: repeat(2, 1fr) */
+  }
+
+  /* Make the .featured item span 2 columns */
+  .featured {
+    /* grid-column: span 2 */
+  }
+}
+
+
+/* ============================================
+   DESKTOP (900px+)
+   ============================================ */
+@media (min-width: 900px) {
+
+  /* TODO Task 4: Grid becomes 3 columns */
+  .photo-grid {
+    /* grid-template-columns: repeat(3, 1fr) */
+  }
+
+}
+
+
+/* ============================================
+   WIDE (1200px+)
+   ============================================ */
+@media (min-width: 1200px) {
+
+  /* Add any refinements for large screens */
+
+}
