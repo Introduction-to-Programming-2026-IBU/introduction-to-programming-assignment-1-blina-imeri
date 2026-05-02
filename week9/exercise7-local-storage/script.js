@@ -15,8 +15,17 @@ const STORAGE_KEY = 'week9_notes';
 let notes = [];
 let editingId = null; // null means we're in "add" mode
 
+// Load notes from localStorage on page load
+window.addEventListener('DOMContentLoaded', () => {
+  const storedNotes = localStorage.getItem(STORAGE_KEY);
+  if (storedNotes) {
+    notes = JSON.parse(storedNotes);
+  }
+});
+
 function saveNotes() {
   // TODO: JSON.stringify notes and save to localStorage
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
 }
 
 
@@ -32,9 +41,13 @@ function renderNotes(filter = '') {
   // TODO: Filter notes by search term (if filter is not empty)
   let filtered = notes;
   // filtered = notes.filter(n => ...);
+  if (filter) {
+    filtered = filtered.filter(n => n.title.includes(filter) || n.body.includes(filter));
+  }
 
   // TODO: Sort so pinned notes appear first
   // filtered.sort((a, b) => ...);
+  filtered.sort((a, b) => b.pinned - a.pinned);
 
   if (filtered.length === 0) {
     notesContainer.innerHTML = `
@@ -50,6 +63,21 @@ function renderNotes(filter = '') {
   //   - body preview (first 100 chars + "..." if longer)
   //   - formatted createdAt date
   //   - Edit, Pin, Delete buttons with data-id attributes
+  filtered.forEach(note => {
+    const card = document.createElement('div');
+    card.className = 'note-card';
+    card.innerHTML = `
+      <h3>${note.pinned ? '📌 ' : ''}${note.title}</h3>
+      <p>${note.body.substring(0, 100)}${note.body.length > 100 ? '...' : ''}</p>
+      <p class="note-date">${new Date(note.createdAt).toLocaleDateString()}</p>
+      <div class="note-actions">
+        <button data-action="edit" data-id="${note.id}">Edit</button>
+        <button data-action="pin" data-id="${note.id}">${note.pinned ? 'Unpin' : 'Pin'}</button>
+        <button data-action="delete" data-id="${note.id}">Delete</button>
+      </div>
+    `;
+    notesContainer.appendChild(card);
+  });
 }
 
 
@@ -74,13 +102,28 @@ noteForm.addEventListener('submit', function(event) {
   if (editingId !== null) {
     // ===== TASK 4: UPDATE existing note =====
     // TODO: Find note by editingId, update title and body
+    const noteIndex = notes.findIndex(n => n.id === editingId);
+    if (noteIndex !== -1) {
+      notes[noteIndex].title = title;
+      notes[noteIndex].body = body;
+    }
     // TODO: Set editingId back to null
+    editingId = null;
     // TODO: Reset form to "add" mode
+    submitBtn.textContent = 'Add Note';
 
   } else {
     // ===== TASK 2: CREATE new note =====
     // TODO: Build note object with id, title, body, createdAt, pinned: false
     // TODO: Push to notes array
+    const newNote = {
+      id: Date.now(), // simple unique ID based on timestamp
+      title,
+      body,
+      createdAt: new Date().toISOString(),
+      pinned: false
+    };
+    notes.push(newNote);
   }
 
   saveNotes();
@@ -90,6 +133,10 @@ noteForm.addEventListener('submit', function(event) {
 
 cancelBtn.addEventListener('click', function() {
   // TODO: Reset editingId to null, reset form, hide cancel button, change button text back
+  editingId = null;
+  noteForm.reset();
+  cancelBtn.style.display = 'none';
+  submitBtn.textContent = 'Add Note';
 });
 
 
@@ -106,14 +153,33 @@ notesContainer.addEventListener('click', function(event) {
 
   if (action === 'delete') {
     // TODO Task 5: confirm(), then remove note from array, save, render
+    if (confirm('Are you sure you want to delete this note?')) {
+      notes = notes.filter(n => n.id !== id);
+      saveNotes();
+      renderNotes();
+    }
   }
 
   if (action === 'pin') {
     // TODO Task 5: toggle note.pinned, save, render
+    const noteIndex = notes.findIndex(n => n.id === id);
+    if (noteIndex !== -1) {
+      notes[noteIndex].pinned = !notes[noteIndex].pinned;
+      saveNotes();
+      renderNotes();
+    }
   }
 
   if (action === 'edit') {
     // TODO Task 4: find note, set editingId, populate form, change button text
+    const note = notes.find(n => n.id === id);
+    if (note) {
+      editingId = note.id;
+      titleInput.value = note.title;
+      bodyInput.value = note.body;
+      submitBtn.textContent = 'Update Note';
+      cancelBtn.style.display = 'block';
+    }
   }
 });
 
@@ -124,6 +190,9 @@ notesContainer.addEventListener('click', function(event) {
 
 const searchInput = document.querySelector('#search-input');
 // TODO: Add 'input' listener → call renderNotes(searchInput.value)
+searchInput.addEventListener('input', function() {
+  renderNotes(searchInput.value.trim());
+});
 
 
 // ============================================================

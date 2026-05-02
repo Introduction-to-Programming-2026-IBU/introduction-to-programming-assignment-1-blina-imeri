@@ -20,12 +20,47 @@
 <body>
 
   <!-- Your HTML goes here -->
-  <main style="padding: 4rem; text-align: center; font-family: system-ui, sans-serif;">
-    <h1>🏗️ Final Project</h1>
-    <p>Replace this template with your chosen project. Good luck!</p>
-    <p>Options: <strong>A) Weather Dashboard</strong> · <strong>B) Task Manager</strong> · <strong>C) Quiz App</strong></p>
-    <p>Read <code>README.md</code> for full instructions.</p>
-  </main>
+<main>
+
+  <!-- ADDED: INPUT SECTION -->
+  <section id="input-section">
+    <h2>Add Task</h2>
+
+    <input id="task-input" type="text" placeholder="Enter task..." />
+
+    <select id="priority">
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+
+    <input type="date" id="due-date" />
+
+    <button id="add-task">Add Task</button>
+  </section>
+
+  <!-- ADDED: FILTER SECTION -->
+  <section id="filter-section">
+    <h2>Filters</h2>
+
+    <button data-filter="all">All</button>
+    <button data-filter="active">Active</button>
+    <button data-filter="completed">Completed</button>
+  </section>
+
+  <!-- ADDED: TASK LIST -->
+  <section id="task-list-section">
+    <h2>Your Tasks</h2>
+    <ul id="task-list"></ul>
+  </section>
+
+  <!-- ADDED: STATS SECTION -->
+  <section id="stats-section">
+    <p id="task-stats">0 tasks</p>
+    <button id="clear-completed">Clear Completed</button>
+  </section>
+
+</main>
 
   <script src="script.js"></script>
 </body>

@@ -12,7 +12,13 @@
 
 /* ===== TODO: CSS Custom Properties ===== */
 :root {
-
+  --font-body: 'Roboto', sans-serif;
+  --font-heading: 'Roboto', sans-serif;
+  --color-primary: #007bff;
+  --color-secondary: #6c757d;
+  --color-background: #f8f9fa;
+  --color-text: #343a40;
+  --spacing-unit: 1rem;
 }
 
 /* ===== TODO: Base Styles (Mobile First) ===== */
@@ -20,77 +26,121 @@
 
 body {
   /* Set font, background, color */
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
 
 /* ===== TODO Task 2: Header & Nav (mobile: stacked) ===== */
 header {
-
+  /* Background color, padding */
+  background-color: var(--color-primary);
+  padding: var(--spacing-unit);
 }
 
 .header-inner {
   /* On mobile, stack logo and nav vertically */
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-unit);
 }
 
 .logo {
   /* Style the site logo/brand name */
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 nav {
   /* On mobile: links stacked in a column */
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-unit);
 }
 
 nav a {
   /* Comfortable tap targets (min 44px height), no underline */
+  color: white;
+  text-decoration: none;
 }
 
 nav a:hover {
-
+  /* Optional: add hover effect for links */
+  text-decoration: underline;
 }
 
 /* ===== TODO Task 5: Hero Section ===== */
 #hero {
   /* Centered text, some padding */
+  text-align: center;
+  padding: var(--spacing-unit);
 }
 
 #hero h1 {
   /* TODO: Use clamp() for responsive font size */
   /* font-size: clamp(1.5rem, 5vw, 3rem); */
+  font-size: clamp(1.5rem, 5vw, 3rem);
 }
 
 /* ===== TODO Task 3: Flexbox Cards ===== */
 .flex-container {
   /* display: flex, flex-wrap: wrap, gap */
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-unit);
 }
 
 .flex-card {
   /* flex: 1 1 250px so they wrap naturally */
+  flex: 1 1 250px;
 }
 
 /* ===== TODO Task 4: CSS Grid Gallery ===== */
 .photo-grid {
   /* display: grid, 1 column on mobile, gap */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-unit);
 }
 
 .grid-item {
   /* Position relative for caption overlay */
+  position: relative;
 }
 
 .grid-item img {
   /* Make images fill their grid cell */
+  width: 100%;
+  height: auto;
 }
 
 .caption {
   /* Optional: overlay caption */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 0.5rem;
 }
 
 /* ===== TODO: Footer ===== */
 footer {
-
+  /* Background color, padding, center text */
+  background-color: var(--color-secondary);
+  color: white;
+  text-align: center;
+  padding: var(--spacing-unit);
 }
 
 /* ===== TODO: Sections ===== */
 section {
   /* padding, max-width, center with margin auto */
+  padding: var(--spacing-unit);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 
@@ -102,20 +152,27 @@ section {
   /* TODO Task 2: Nav becomes horizontal */
   .header-inner {
     /* Row layout */
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; 
   }
 
   nav {
     /* Horizontal row */
+    flex-direction: row;
+    gap: var(--spacing-unit);
   }
 
   /* TODO Task 4: Grid becomes 2 columns */
   .photo-grid {
     /* grid-template-columns: repeat(2, 1fr) */
+    grid-template-columns: repeat(2, 1fr);
   }
 
   /* Make the .featured item span 2 columns */
   .featured {
     /* grid-column: span 2 */
+    grid-column: span 2;
   }
 }
 
@@ -128,6 +185,7 @@ section {
   /* TODO Task 4: Grid becomes 3 columns */
   .photo-grid {
     /* grid-template-columns: repeat(3, 1fr) */
+    grid-template-columns: repeat(3, 1fr);
   }
 
 }
@@ -139,5 +197,9 @@ section {
 @media (min-width: 1200px) {
 
   /* Add any refinements for large screens */
+  .photo-grid {
+    /* grid-template-columns: repeat(4, 1fr) */
+    grid-template-columns: repeat(4, 1fr);
+  }
 
 }
