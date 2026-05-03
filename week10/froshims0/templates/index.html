@@ -4,12 +4,21 @@
     <h1>Register</h1>
 
     <!-- TODO: Create an HTML form that posts to /register -->
+    <form method="post" action="/register">
 
         <!-- TODO: Add a text input for the student's name -->
+        <input type="text" name="name" placeholder="Name" required>
 
         <!-- TODO: Add a <select> dropdown for sport with a blank default
                    option and at least 3 sport choices -->
+        <select name="sport">
+            <option value="">Select a sport</option>
+            <option value="Basketball">Basketball</option>
+            <option value="Soccer">Soccer</option>
+            <option value="Tennis">Tennis</option>
+        </select>
 
         <!-- TODO: Add a submit button -->
-
+        <input type="submit" value="Register">
+    
 {% endblock %}

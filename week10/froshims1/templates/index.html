@@ -5,13 +5,22 @@
 
     <!-- TODO: Create a form that POSTs to /register -->
 
-        <!-- TODO: Add a text input for name -->
+        <form method="post" action="/register">
 
+        <!-- TODO: Add a text input for name -->
+            <input type="text" name="name" placeholder="Name" required>
         <!-- TODO: Add a <select> dropdown for sport:
                    - First option: empty default (value="")
                    - Use a Jinja2 for loop to generate one <option>
                      per sport from the "sports" variable -->
+            <select name="sport">
+                <option value="">Select a sport</option>
+                {% for s in sports %}
+                    <option value="{{ s }}">{{ s }}</option>
+                {% endfor %}
+            </select>
 
         <!-- TODO: Add a submit button -->
-
+            <button type="submit">Register</button>
+        </form>
 {% endblock %}
