@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Final Project — Week 9</title>
+  <!-- 
+    FINAL PROJECT STARTER TEMPLATE
+    ================================
+    Replace everything below with your project.
+    See README.md for the three project options and all requirements.
+    
+    Choose your option:
+      A) Weather Dashboard
+      B) Task Manager
+      C) Quiz App
+  -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Your HTML goes here -->
+<main>
+
+  <!-- ADDED: INPUT SECTION -->
+  <section id="input-section">
+    <h2>Add Task</h2>
+
+    <input id="task-input" type="text" placeholder="Enter task..." />
+
+    <select id="priority">
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+
+    <input type="date" id="due-date" />
+
+    <button id="add-task">Add Task</button>
+  </section>
+
+  <!-- ADDED: FILTER SECTION -->
+  <section id="filter-section">
+    <h2>Filters</h2>
+
+    <button data-filter="all">All</button>
+    <button data-filter="active">Active</button>
+    <button data-filter="completed">Completed</button>
+  </section>
+
+  <!-- ADDED: TASK LIST -->
+  <section id="task-list-section">
+    <h2>Your Tasks</h2>
+    <ul id="task-list"></ul>
+  </section>
+
+  <!-- ADDED: STATS SECTION -->
+  <section id="stats-section">
+    <p id="task-stats">0 tasks</p>
+    <button id="clear-completed">Clear Completed</button>
+  </section>
+
+</main>
+
+  <script src="script.js"></script>
+</body>
+</html>
